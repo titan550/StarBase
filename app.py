@@ -4,8 +4,7 @@ from aws_cdk import core
 
 from star_base.star_base_stack import StarBaseStack
 
-
 app = core.App()
-StarBaseStack(app, "star-base")
+StarBaseStack(app, "star-base", env={'region': 'us-east-1'})
 
 app.synth()

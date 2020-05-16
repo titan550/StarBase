@@ -1,58 +1,33 @@
+# Star Base Weather Station File Server
 
-# Welcome to your CDK Python project!
+This project contains the details of the AWS infrastructure used to store and retrieve weather station data from the Arduino Weather Station built using [this repo](https://github.com/crestlinesoaring/).
 
-This is a blank project for Python development with CDK.
+## Deployment Steps
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+1. Install AWS [Cloud Development Kit (CDK)](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html)
+1. Clone this repo
+1. Use [pipenv](https://pipenv-fork.readthedocs.io/en/latest/install.html) to create the Python environment specified in `Pipfile`
+1. Setup your AWS account and save your credentials in `~/.aws/credentials` as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+1. Run the commands below
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the .env
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
-
-To manually create a virtualenv on MacOS and Linux:
-
-```
-$ python3 -m venv .env
+```bash
+cdk bootstrap
+cdk deploy
 ```
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+Commands above will output `HttpEndpointDomain` value. Use this to make API calls.
 
-```
-$ source .env/bin/activate
-```
+## API Endpoints
 
-If you are a Windows platform, you would activate the virtualenv like this:
+#### Store Data
 
-```
-% .env\Scripts\activate.bat
+```bash
+curl -i -X PUT -d '04:08,5/16/2020,00.0,00,1' <HttpEndpointDomain> 
 ```
 
-Once the virtualenv is activated, you can install the required dependencies.
 
+#### Retrieve Data
+
+```bash
+curl -i -X GET  <HttpEndpointDomain>/?date=20200516
 ```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!
