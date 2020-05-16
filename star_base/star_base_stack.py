@@ -3,11 +3,12 @@ from aws_cdk import (
     aws_apigateway as apigw,
     aws_dynamodb as ddb,
     aws_cloudfront as cf,
+    aws_logs as logs,
     core
 )
 
 
-# noinspection PyShadowingBuiltins,PyShadowingBuiltins
+# noinspection PyShadowingBuiltins
 class StarBaseStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
@@ -21,7 +22,8 @@ class StarBaseStack(core.Stack):
                                        handler='main.handler',
                                        environment={
                                            'WEATHERDATA_TABLE_NAME': table.table_name
-                                       })
+                                       },
+                                       log_retention=logs.RetentionDays.TWO_WEEKS)
         table.grant_read_write_data(main_lambda)
         api = apigw.LambdaRestApi(self, 'MainEndpoint', handler=main_lambda)
         api.add_usage_plan('UsagePlan',

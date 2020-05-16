@@ -64,7 +64,6 @@ def put_data(event, ddb, table_name):
 
 
 def handler(event, context):
-    print('request: {}'.format(json.dumps(event)))
     ddb = boto3.client('dynamodb')
     method = event['httpMethod']
     table_name = os.environ['WEATHERDATA_TABLE_NAME']
