@@ -1,4 +1,4 @@
-# Star Base Weather Station File Server
+# Star Base Weather Station Serverless File Server APIs
 
 This project contains the details of the AWS infrastructure used to store and retrieve weather station data from the Arduino Weather Station built using [this repo](https://github.com/crestlinesoaring/).
 
