@@ -2,6 +2,10 @@
 
 This project contains the details of the AWS infrastructure used to store and retrieve weather station data from the Arduino Weather Station built using [this repo](https://github.com/crestlinesoaring/).
 
+## Design Diagram
+
+![diagram](docs/diagram.png)
+
 ## Deployment Steps
 
 1. Install AWS [Cloud Development Kit (CDK)](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html)
